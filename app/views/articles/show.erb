@@ -1,4 +1,9 @@
 <h1>Showing articles details</h1>
 <%= @article.id %>
 <%= @article.title %>
-<%= @article.description %>
+<%= @article.description %> <br>
+
+
+<%= link_to 'edit', edit_article_path(@article) %> | 
+<%= link_to 'delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Return to listing', articles_path %> 
