@@ -1,44 +1,44 @@
 class ArticlesController < ApplicationController
-  def show
-    @article = Article.find(params[:id])
-  end
+  # instruct set_article() method to be called before the listed 'only' methods
+  before_action :set_article, only: %i[edit update show destory]
+
+  def show; end
 
   def index
     @articles = Article.all
   end
 
+  # instantiate an new and empty article instance
   def new
-    @new_article = Article.new
+    @article = Article.new
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
-
+  # recieves POST request from /new and persists the database with recieved data
   def create
-    @new_article =
-      Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_params)
 
-    if @new_article.save
+    if @article.save
       flash[:notice] = 'Article was successfully created.'
-      redirect_to action: 'show', id: @new_article.id
+      redirect_to action: 'show', id: @article.id
     else
       render 'new'
     end
   end
 
+  def edit; end
+
+  # recieves POST request from /edit and update instance the database with recieved data
   def update
-    @article = Article.find(params[:id])
-    if @article.update(params.require(:article).permit(:title, :description))
-      flash[:notice] = 'Article was successfully updated. named: ' + @article.title
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated to: #{@article.title}"
       redirect_to @article
     else
       render 'edit'
     end
   end
 
+  # recieves DELETE request with article id and deletes its instance from database
   def destroy
-    @article = Article.find(params[:id])
     if @article.destroy
       flash[:notice] = 'Article was successfully deleted.'
       redirect_to articles_path
@@ -46,5 +46,14 @@ class ArticlesController < ApplicationController
       flash[:error] = 'Something went wrong'
       redirect_to 'home'
     end
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+  def article_params
+    params.require(:article).permit(:title, :description)
   end
 end

@@ -1,8 +1,8 @@
 <h1>Showing articles details</h1>
-<%= @article.id %>
-<%= @article.title %>
-<%= @article.description %> <br>
-
+Article ID : <%= @article.id %> <br>
+Article title : <%= @article.title %> <br>
+Article description : <%= @article.description %> <br>
+<br>
 
 <%= link_to 'edit', edit_article_path(@article) %> | 
 <%= link_to 'delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %> |
