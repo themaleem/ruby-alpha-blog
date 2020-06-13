@@ -1,15 +1,8 @@
 <div class="container">
-    <% if @article.errors.any? %>
-        <h3>Errors encountered</h3>
-        <ul>
-            <% @article.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end  %>
-        </ul>
-    <% end %>
     <div class="row justify-content-center">
         
         <div class="col-10">
+            <%= render 'shared/errors' %>
             <%= form_with(model: @article,class:"shadow rounded p-5 bg-success", local: true) do |f| %>
                 <div class="form-group row">
                     <%= f.label :title, class:"col-2 text-white" %>
