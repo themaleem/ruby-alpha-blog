@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   # instruct set_article() method to be called before the listed 'only' methods
-  before_action :set_article, only: %i[edit update show destory]
+  before_action :set_article, only: %i[edit update show destroy]
 
   def show; end
 
