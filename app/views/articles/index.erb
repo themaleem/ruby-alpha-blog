@@ -5,7 +5,7 @@
         <% @articles.each do |article| %>
         <div class="card shadow rounded mb-5 text-center">  
         <div class="card-header">
-            <p>By Olumide Bello</p>
+            <%= article.user.username if article.user %>
         </div>
 
         <div class="card-body">
