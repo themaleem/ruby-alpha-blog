@@ -10,22 +10,19 @@
           <%= link_to "About", about_path, class: "nav-link"%>
 
         </li>
-        <li class="nav-item">
-          <%= link_to "Articles", articles_path, class: "nav-link"%>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            Articles
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <%= link_to 'All articles', articles_path, class: "dropdown-item" %>
+            <%= link_to 'Create Article', new_article_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <%= link_to "Bloggers", users_path, class: "nav-link"%>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

@@ -1,32 +1,30 @@
-<div id="page-content">
-  <h1 class="text-center mb-5">Showing articles details</h1>
-    <div class="container">
-          <div class="card shadow rounded mb-5 text-center">  
-          <div class="card-header">
-            <%= @article.user.username if @article.user %>
-          </div>
-
-          <div class="card-body">
-              <h5 class="card-title text-success "> <%= @article.title %> </h5>
-              <p class="card-text"> <%= simple_format(@article.description) %></p>
-              <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-warning" %>
-              <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %>
-          </div>
-          <div class="card-footer text-muted">
-              <p>
-                  created: <%= time_ago_in_words(@article.created_at) %> |
-                  Last updated: <%= time_ago_in_words(@article.updated_at) %>
-              </p>
-          </div>
-          </div>
-    </div>
-    
-    <div class="container-fluid text-center justify-content-md-center">
-        <div class="row">
-            <div class="col-md-12">
-              <%= link_to 'Return to listing', articles_path %> 
-            </div>
+<h1 class="text-center mb-5">Showing articles details</h1>
+  <div class="container">
+        <div class="card shadow rounded mb-5 text-center">  
+        <div class="card-header">
+          by <%= link_to @article.user.username, user_path(@article.user),class:"text-success" %>
         </div>
-    </div>
-</div>
 
+        <div class="card-body">
+            <h5 class="card-title text-success "> <%= @article.title %> </h5>
+            <%= gravatar_for(@article.user) %>
+            <p class="card-text"> <%= simple_format(@article.description) %></p>
+            <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-warning" %>
+            <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %>
+        </div>
+        <div class="card-footer text-muted">
+            <p>
+                created: <%= time_ago_in_words(@article.created_at) %> |
+                Last updated: <%= time_ago_in_words(@article.updated_at) %>
+            </p>
+        </div>
+        </div>
+  </div>
+  
+  <div class="container-fluid text-center justify-content-md-center">
+      <div class="row">
+          <div class="col-md-12">
+            <%= link_to 'Return to listing', articles_path %> 
+          </div>
+      </div>
+  </div>

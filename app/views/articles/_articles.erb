@@ -2,7 +2,7 @@
     <% @articles.each do |article| %>
     <div class="card shadow rounded mb-5 text-center">  
     <div class="card-header">
-        <%= article.user.username if article.user %>
+        by <%= link_to article.user.username, user_path(article.user),class:"text-success" %>
     </div>
 
     <div class="card-body">
