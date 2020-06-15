@@ -1,5 +1,12 @@
 <h1 class="text-center mt-4">Alpha Bloggers</h1>
 <div class="container">
+    
+    <div class="flickr_pagination">
+        <div class="page_info">
+            <%= will_paginate @users %>
+        </div>
+    </div>
+    
     <% @users.each do |user| %>
     <div class="card shadow rounded mb-5 text-center">  
     <div class="card-header">
@@ -14,6 +21,7 @@
         <%= link_to 'View profile', user_path(user), class: "btn btn-outline-success" %>
         <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-warning" %>
     </div>
+    
     <div class="card-footer text-muted">
         <p>
             Joined <%= time_ago_in_words(user.created_at) %> ago
@@ -22,4 +30,9 @@
     </div>
     <% end %> 
 
+    <div class="flickr_pagination">
+        <div class="page_info">
+            <%= will_paginate @users %>
+        </div>
+    </div>
 </div>

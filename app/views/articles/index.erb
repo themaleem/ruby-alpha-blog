@@ -1,3 +1,13 @@
 <h1 class="text-center mb-5">All articles</h1>
 
+<div class="flickr_pagination">
+    <div class="page_info">
+        <%= will_paginate @articles %>
+    </div>
+</div>
 <%= render 'articles' %>
+<div class="flickr_pagination mb-4">
+    <div class="page_info">
+        <%= will_paginate @articles %>
+    </div>
+</div>
