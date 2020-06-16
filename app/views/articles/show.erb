@@ -9,8 +9,10 @@
             <h5 class="card-title text-success "> <%= @article.title %> </h5>
             <%= gravatar_for(@article.user) %>
             <p class="card-text"> <%= simple_format(@article.description) %></p>
-            <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-warning" %>
-            <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %>
+            <% if logged_in? and @article.user==current_user %>
+                <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-warning" %>
+                <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %>
+            <% end %>
         </div>
         <div class="card-footer text-muted">
             <p>

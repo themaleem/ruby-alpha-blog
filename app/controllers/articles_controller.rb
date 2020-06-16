@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   # instruct set_article() method to be called before the listed 'only' methods
   before_action :set_article, only: %i[edit update show destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def show; end
 
@@ -17,6 +19,7 @@ class ArticlesController < ApplicationController
   # recieves POST request from /new and persists the database with recieved data
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     if @article.save
       flash[:notice] = 'Article was successfully created.'
@@ -56,5 +59,12 @@ class ArticlesController < ApplicationController
   end
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_same_user
+    if @article.user != current_user
+      flash[:notice] = "Only article owner can perform this operation."
+      redirect_to @article
+    end
   end
 end

@@ -19,7 +19,9 @@
             Articles count: <%= user.articles.count %>
         </p>
         <%= link_to 'View profile', user_path(user), class: "btn btn-outline-success" %>
-        <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-warning" %>
+        <% if logged_in? and user==current_user %>
+            <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-warning" %>
+        <% end %>
     </div>
     
     <div class="card-footer text-muted">
