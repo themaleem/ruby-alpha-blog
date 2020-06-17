@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
 
   def require_same_user
     if @article.user != current_user
-      flash[:notice] = "Only article owner can perform this operation."
+      flash[:error] = "Only article owner can perform this operation."
       redirect_to @article
     end
   end
