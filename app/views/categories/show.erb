@@ -1,1 +1,26 @@
-<h1 class="text-center mb-5"> <%= @category.name %> </h1>
+<h1 class="text-center mb-5"> Category: <%= @category.name %> </h1>
+
+<div class="container">
+
+    <% if logged_in? && current_user.admin? %>
+        <div class="text-center mb-4">
+            <%= link_to 'Edit category name', edit_category_path(@category), class: "btn btn-outline-primary" %>   
+        </div>
+    <% end %>
+
+    <h2 class="text-center mb-5"> Articles </h2>
+
+    <div class="flickr_pagination mb-4">
+        <div class="page_info">
+            <%= will_paginate @articles, :container=> false %>
+        </div>
+    </div>
+
+    <%= render 'articles/articles' %>
+
+    <div class="flickr_pagination mb-4">
+        <div class="page_info">
+            <%= will_paginate @articles, :container=> false%>
+        </div>
+    </div>
+</div>
